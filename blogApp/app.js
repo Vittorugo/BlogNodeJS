@@ -5,6 +5,7 @@ const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const app = express()
 const routes = require('./routes/routes') // importando meu arquivo com as rotas...
+const path = require('path') // módulo para manipular pastas e diretórios ...
 
 //const mongoose   = require('mongoose')
 
@@ -21,16 +22,19 @@ const routes = require('./routes/routes') // importando meu arquivo com as rotas
 
     // bodyParser ...
         
-        app.use(bodyParser.urlencoded({extended: false}))
+        app.use(bodyParser.urlencoded({extended: true}))
         app.use(bodyParser.json())
 
     // mongoose ...
-
+    
+    // public ...
+        
+        app.use(express.static(path.join(__dirname,"public"))) // estamos falando para o express que a pasta que está guardando todos os nossos arquivos estáticos é a pasta 'public' ... usamos 'path.join' e '__dirname' para o express pegar o caminho absoluto para a pasta public.
         
 
 // rotas ...
 
-app.use(express.json())
+//app.use(express.json())
 //app.use(routes) ... vamos utilizar um prefixo antes das rotas ...
 app.use('/main',routes)
 
@@ -40,3 +44,4 @@ const PORT = 8081
 app.listen(PORT, () => {   // callback ...
     console.log("servidor rodando ...") 
 })
+

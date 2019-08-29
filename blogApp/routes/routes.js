@@ -6,7 +6,7 @@ const router  = express.Router()
 // defininco a rota principal ...
 
 router.get('/', (req, res) => {
-    res.send('Página principal do painel ADM ')
+    res.render('admin/index')
 })
 
 router.get('/posts', (req, res) => {
