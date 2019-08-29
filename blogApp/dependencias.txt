@@ -4,3 +4,4 @@ EXPRESS: npm install --save EXPRESS
 HANDLEBARS: npm install --save handlebars
 BODY-PARSER: npm install body-parser --save
 MONGOOSE: npm install --save mongoose
+NODEMON: npm install -g nodemon | npm install --save-dev nodemon
