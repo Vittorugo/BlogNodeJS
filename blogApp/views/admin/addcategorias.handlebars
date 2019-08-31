@@ -1,0 +1,29 @@
+
+<h3>Nova categoria:</h3>
+
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/categorias/nova" method="POST">
+
+            <div class="col-md-5 mb-3">
+            
+                <label for="nome"> Nome: </label>
+                    <input class="form-control" type="text" id="nome" name="nome_categoria" placeholder="Nome da categoria">
+                    
+            </div>
+
+
+            <div class="col-md-5 mb-3">
+                <label for="slug"> slug:</label>
+                    <input class="form-control" type="text" id="slug" name="slug_categoria" placeholder="Slug da categoria">
+                
+                <br>
+            </div>
+            
+            <div class="col-md-5  mb-3">
+                <button type="submit" class="btn btn-outline-info"> Criar categoria </button>
+            </div>
+        </form>
+
+    </div>
+</div>
