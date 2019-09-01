@@ -14,7 +14,21 @@ const flash  = require('connect-flash')
 
     // session ...
 
-        
+        app.use(session({
+            secret: "cursodenode",
+            resave: true,
+            saveUninitialized: true
+        })) // app.use serve para criação e configuração de middlewares
+
+        app.use(flash())
+    
+    // Middleware
+    
+        app.use((req, res, next) => {
+            res.locals.success_msg = req.flash("sucess_msg")
+            res.locals.erro_msg    = req.flash("error_msg")
+            next()
+        })
 
     // handlebars ... 
 
