@@ -7,9 +7,14 @@ const app = express()
 const routes = require('./routes/routes') // importando meu arquivo com as rotas...
 const path = require('path') // módulo para manipular pastas e diretórios ...
 const mongoose   = require('mongoose')
-
+const session  = require('express-session')
+const flash  = require('connect-flash')
 
 // configurações ...
+
+    // session ...
+
+        
 
     // handlebars ... 
 
@@ -37,7 +42,7 @@ const mongoose   = require('mongoose')
         
         app.use(express.static(path.join(__dirname,"public"))) // estamos falando para o express que a pasta que está guardando todos os nossos arquivos estáticos é a pasta 'public' ... usamos 'path.join' e '__dirname' para o express pegar o caminho absoluto para a pasta public.
         
-
+      
 // rotas ...
 
 //app.use(express.json())
