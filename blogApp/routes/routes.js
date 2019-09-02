@@ -3,8 +3,6 @@
 const express = require('express')
 const router  = express.Router()
 const mongoose= require('mongoose')
-const { check, validationResult } = require('express-validator')
-
 
 require("../models/Categoria") // importando  o modelo categoria
 const Categoria = mongoose.model('categorias') // associando a const Categoria o schema exportado no arquivo Categorias 
@@ -23,7 +21,15 @@ router.get('/posts', (req, res) => {
 })
 
 router.get('/categorias', (req, res) => {
-    res.render("admin/categorias")
+    
+    Categoria.find().sort({date: 'desc'}).then((categorias) =>{  // procurando as categorias adicionadas no banco e exibindo-as em nossa página lista de categorias.
+        res.render("admin/categorias", {categorias: categorias})
+    }).catch((erro) => {
+        req.flash("error_msg", "Houve um erro ao listar as categorias")
+        res.redirect('/admin')
+    })
+    
+    
 })
 
 router.get('/categorias/add', (req, res) => {
