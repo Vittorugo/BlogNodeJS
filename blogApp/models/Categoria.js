@@ -20,4 +20,4 @@ const Categoria = new schema({
 
 })
 
-mongoose.model("categorias", Categoria) // chamando o model o mangoose vai compilar este modelo de schema...
+mongoose.model("categorias", Categoria) // chamando o model o mangoose vai compilar este modelo de schema... ( 'nome_a_ser_exportado - geralmente é o nome da tabela', variavel_schema )
