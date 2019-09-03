@@ -76,10 +76,10 @@ router.post('/categorias/nova', (req, res) => {
         })
     }
 
+})
 
-    
-
-    //res.json({novaCategoria})
+router.get('/categorias/edit/:id' , (req, res) => {
+    res.send("pagina de edição")
 })
 
 
