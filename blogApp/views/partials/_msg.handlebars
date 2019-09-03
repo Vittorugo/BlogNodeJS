@@ -1,0 +1,11 @@
+{{#if success_msg}}  <!-- podemos inserir "if" no handlebars... neste caso estamos dizendo : if existir uma mensagem de sucesso faça o seguinte ,,, -->
+
+    <div class="alert alert-success alert-dismissible fade show"> {{success_msg}}</div>
+
+{{/if}}
+
+{{#if error_msg}}
+    <div class="alert alert-danger alert-dismissible fade show"> {{ error_msg }}</div>
+
+{{/if}}
+
