@@ -49,12 +49,12 @@ router.post('/categorias/nova', (req, res) => {
         erros.push({texto: "Nome inválido!"})
     } // se o campo nome for vazio ou se o campo nome for igual a indefinido ou se o campo node for igual a nulo ...
 
-    if(req.body.nome_categoria.length < 2){
+    else if(req.body.nome_categoria.length < 2){
         erros.push({texto:"Nome da categoria muito pequeno!"})
     } // se o campo nome for menor que 2 caracteres 
 
 
-    if(!req.body.slug_categoria || typeof req.body.slug_categoria == undefined || req.body.slug_categoria == null){
+    else if(!req.body.slug_categoria || typeof req.body.slug_categoria == undefined || req.body.slug_categoria == null){
         erros.push({texto: "Slug inválido!"})
     } // se o slug for vazio ou se o slug for indefinido ou se o slug for nulo ...
 
@@ -79,9 +79,54 @@ router.post('/categorias/nova', (req, res) => {
 })
 
 router.get('/categorias/edit/:id' , (req, res) => {
-    res.send("pagina de edição")
+
+    Categoria.findOne({_id: req.params.id}).then( ( categorias ) => { // devo encontrar através do id passado na requisição a categoria cadastrada e passar um objeto dessa categoria para o arquivo de edição de categoria. Lá o nome desta categoria será utilizado no inputs do form
+        
+        res.render("admin/editarcategorias",{categoria: categorias})
+    }).catch( (err) => { 
+        req.flash("error_msg","Erro! ID não encontrado!")
+        res.redirect("/admin/categorias")
+    })
+
+    
 })
 
 
+router.post("/categorias/edit", (req, res) => {    // rota  para salvar as categorias editadas 
+
+
+    Categoria.findOne({_id: req.body.id}).then((categoria) => {
+
+
+        categoria.nome = req.body.nome_categoria
+        categoria.slug = req.body.slug_categoria
+
+
+        categoria.save().then(()=> {
+            req.flash("success_msg","Categoria editada com sucesso!")
+            res.redirect("/admin/categorias")
+        }).catch( (err) => {
+            req.flash("error_msg", "Erro ao editar categoria!")
+            res.redirect("/admin/categorias")
+        } )
+
+    }).catch( (err) => {
+        req.flash("error_msg","Houve um erro ao editar categoria")
+        res.redirect("/admin/categorias")
+    })
+
+})
+
+
+router.post("/categorias/deletar", (req,res) => {
+
+    Categoria.remove({_id: req.body.id}).then(() => {
+        req.flash('success_msg',"Categoria deletada com sucesso!")
+        res.redirect("/admin/categorias")
+    }).catch((err) => {
+        req.flash('error_msg',"Não foi possível deletar categoria!")
+        res.redirect('/admin/categorias')
+    })
+})
 
 module.exports = router // exportando a rota 
