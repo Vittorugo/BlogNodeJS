@@ -13,8 +13,9 @@
 <body>
 
     {{>_navbars}} <!-- adicionando uma barra de navegação do meu arquivo navbars.handlebars -->
-    <div class="container mt-4">    <!-- classe container do BS centraliza a página... classe mt-4 dá um espaço de 4 unidades do topo -->
     
+    <div class="container mt-4">    <!-- classe container do BS centraliza a página... classe mt-4 dá um espaço de 4 unidades do topo -->
+        {{>_msg}} <!-- adicionando msgs de tratamento ( alerts ) do cadastro -->
         {{{body}}}
     
     </div>
