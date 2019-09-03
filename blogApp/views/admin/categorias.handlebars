@@ -1,18 +1,30 @@
 <h2>Lista de categorias:</h2>
 <hr>
-<a href="/admin/categorias/add"><button class="btn btn-outline-info mt-2"> Nova categoria</button></a>
+<a href="/admin/categorias/add"><button class="btn btn-info mt-2"> Nova categoria</button></a>
 
 {{#each categorias}}
 
-    <div class="card  col-md-6 mt-4">
+    <div class="card   mt-4">
         <div class="card-body mt-8">
             <h4>{{nome}}</h4>  <!-- nome da coluna do banco-->
             <small>Slug: {{slug}}</small><br> <!-- nome da coluna do banco -->
-            <small>Data de criação: {{data}}</small>
-            <a href="/admin/categorias/edit/{{_id}}"><button class="btn btn-info btn-sm mt-4"> Editar </button></a>
+            <small>Data de criação: {{data}}</small> <br>
+            <a href="/admin/categorias/edit/{{_id}}"><button class="btn btn-outline-info btn-sm mt-4"> Editar </button></a>
+
+            
+            <form  action='/admin/categorias/deletar' method="POST" style="display: inline-block">
+
+                <input type="hidden" name="id" value="{{_id}}"> <!-- Um campo oculto geralmente armazena o registro do banco de dados que precisa ser atualizado quando o formulário é enviado. -->
+                <button type="submit" class="btn btn-outline-danger btn-sm md-5 mt-4"> Deletar </button>
+            
+            </form>
+            
         </div>
     </div>
 
 {{else}}
+
+
+    <h4 class="mt-5" style="color:  rgb(161, 158, 158)"> Nenhuma categoria cadastrada! </h4>
 
 {{/each}}
