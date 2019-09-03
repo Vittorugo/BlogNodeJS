@@ -7,8 +7,9 @@ const app = express()
 const routes = require('./routes/routes') // importando meu arquivo com as rotas...
 const path = require('path') // módulo para manipular pastas e diretórios ...
 const mongoose   = require('mongoose')
-const session  = require('express-session')
-const flash  = require('connect-flash')
+const session  = require('express-session') // módulo para armazenar os dados do servidor na sessão 
+const flash  = require('connect-flash') // tipo de sessão que aparece apenas uma vez : carrega mensagens de tratamento por um tempo curto ( caso recarregue a página o alert vai sumir )
+
 
 // configurações ...
 
@@ -20,13 +21,21 @@ const flash  = require('connect-flash')
             saveUninitialized: true
         })) // app.use serve para criação e configuração de middlewares
 
-        app.use(flash())
+        app.use(flash()) // sempre tem que ficar abaixo da sessão ... 
+        
+
     
+    // validator ...
+
+       
+
     // Middleware
     
         app.use((req, res, next) => {
-            res.locals.success_msg = req.flash("sucess_msg")
-            res.locals.erro_msg    = req.flash("error_msg")
+            
+            res.locals.success_msg = req.flash("sucess_msg") // .locals cria variável global que neste caso vai armazenar a mensagem de sucesso caso o cadastro seja realizado com sucesso...
+            res.locals.erro_msg    = req.flash("error_msg") // cria uma variável global para armazenar uma msg de erro...
+            
             next()
         })
 
@@ -34,6 +43,7 @@ const flash  = require('connect-flash')
 
         app.engine('handlebars', handlebars({
             defaultLayout: 'main'
+           
         }))
 
         app.set('view engine','handlebars')
