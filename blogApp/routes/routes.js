@@ -16,9 +16,7 @@ router.get('/', (req, res) => {
     res.render('admin/index')
 })
 
-router.get('/posts', (req, res) => {
-    res.send('Página de Posts')
-})
+
 
 router.get('/categorias', (req, res) => {
     
@@ -128,5 +126,24 @@ router.post("/categorias/deletar", (req,res) => {
         res.redirect('/admin/categorias')
     })
 })
+
+
+//----------- rotas de postagens ------------// 
+
+router.get('/postagens', (req, res) => {
+    res.render('admin/postagens')
+})
+
+router.get('/postagens/add', (req, res) => {
+    
+    Categoria.find().then( (categorias) => {   // vamos passar as categorias registradas no banco para serem selecionadas na postagem.
+        res.render('admin/addpostagens',{ categorias: categorias})
+    }).catch( (err) => {
+        req.flash("error_msg", "Houve ao procurar as categorias!")
+        res.redirect("/admin")
+    })
+    
+})
+
 
 module.exports = router // exportando a rota 
