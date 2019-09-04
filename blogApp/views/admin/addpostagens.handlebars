@@ -1,0 +1,45 @@
+<div class="card">
+
+    <div class="card-body">
+
+        <h4>Nova postagem:</h4>
+
+        <form action="/admin/postagens/" method="POST">
+
+            <label for="titulo">Título:</label>
+            <input class="form-control" type="text" name="nome_titulo" placeholder="Digite um título ...">
+
+            <label for="slug">Slug:</label>
+            <input class="form-control" type="text" name="nome_slug" placeholder="Digite um slug ... ">
+
+            <label for="descricao">Descrição:</label>
+            <input class="form-control" type="text" name="nome_Descrição" placeholder="Descrição da postagem ...">
+
+            <label for="conteudo">Conteúdo:</label>
+            <textarea class="form-control " name="nome_conteudo"></textarea>
+
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" class="form-control colorful-select dropdown-secondary">
+                <label class="mdb-main-label">Selecione a categoria ... </label>
+                {{#each categorias}}
+                    
+                    <option value="{{_id}}">  
+                    
+                        {{nome}} 
+                    
+                    </option>
+                
+                {{else}}
+
+                    <option value="0"> Nenhuma categoria cadastrada </option>
+
+                {{/each}}
+            </select>
+
+            <button class="btn btn-outline-info mt-4"> Criar postagem </button>
+
+
+        </form>
+
+    </div>
+</div>
