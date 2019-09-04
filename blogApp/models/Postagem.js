@@ -26,7 +26,7 @@ const Postagem = new Schema({
         required: true
     },
 
-    categoria:{
+    categoria:{                       // adicionando a categoria a este esquema segundo o id da categoria do schema categorias
         type: Schema.Types.ObjectId,
         ref: "categorias",
         required: true
