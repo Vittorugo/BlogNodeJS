@@ -1,0 +1,51 @@
+{{#each falhas}}
+    
+    <div class="alert alert-danger alert-dismissible fade show"> <!-- classe de botão de alerta que tem a opção de fechar -->
+        
+        {{texto}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>    
+    </div>
+
+{{else}}
+
+{{/each}}
+
+
+<h3> Editar categoria: </h3>
+
+
+
+<div class="card col-md-6 mt-4">
+
+    <div class="card-body mt-8">
+
+        
+            <form action="/admin/categorias/edit" method="POST">
+
+                <input type="hidden" name="id" value="{{categoria._id}}">  <!-- type: hidden é um tipo de input que fica escondido no form, para registrar as alterações de edição -->
+
+               <div class="col-md-8 mb-3">
+
+                    <label for="nome"> Nome: </label>
+                        <input class="form-control" type="text" id="nome" name="nome_categoria" placeholder="Nome da categoria" value="{{categoria.nome}}">
+                    
+                </div>
+
+
+                <div class="col-md-8 mb-3">
+                    <label for="slug"> slug:</label>
+                        <input class="form-control" type="text" id="slug" name="slug_categoria" placeholder="Slug da categoria" value="{{categoria.slug}}">
+                
+                        <br>
+                </div>
+            
+                <div class="col-md-5  mb-3">
+                    <button type="submit" class="btn btn-outline-info"> Salvar </button>
+                </div>
+            
+            </form>
+
+            
+    </div>
+
+</div>

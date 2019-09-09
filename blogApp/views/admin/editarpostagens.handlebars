@@ -1,0 +1,64 @@
+{{#each erros}}
+    
+    <div class="alert alert-danger alert-dismissible fade show"> <!-- classe de botão de alerta que tem a opção de fechar -->
+        
+        {{texto}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>    
+    </div>
+
+{{else}}
+
+{{/each}}
+
+<div class="card">
+    <div class="card-body">
+
+        <h4> Editar postagem: </h4>
+
+        <form action="/admin/postagem/edit" method="POST" class="col-md-5  mb-3">
+
+
+            <input type="hidden" value="{{postagem._id}}" name="id"> <!--  input oculto que salva o conteúdo do formulário -->
+
+            <label for="titulo_post"> Título: </label>
+                <input name="titulo_edit_post" class="form-control" type="text" value="{{edit.titulo}}">
+
+            <label for="slug_post"> Slug: </label>
+                <input name="slug_edit_post" class="form-control" type="text" value="{{edit.slug}}">
+
+             <label for="descricao_post"> Descrição: </label>
+                <input name="descricao_edit_post" class="form-control" type="text" value="{{edit.descricao}}">
+
+            <label for="conteudo_post"> Conteúdo: </label>
+                <textarea class="form-control " name="edit_conteudo" >{{edit.conteudo}}</textarea>
+            
+            <label for="cat_post"> Categoria: </label>
+                <select name="cat_edit_post" class="form-control colorful-select dropdown-secondary" > 
+
+                    <label class="mdb-main-label">Selecione a categoria ... </label>
+                
+                        {{#each categoria}}
+                            
+                            <option value="{{_id}}">  
+                            
+                                {{nome}} 
+                            
+                            </option>
+                        
+                        {{else}}
+
+                            <option value="0"> Nenhuma categoria cadastrada </option>
+
+                        {{/each}}
+            
+                </select>
+
+                 
+                    
+                <button type="submit" class="btn btn-outline-info mt-4"> Salvar </button>
+
+                
+        </form>
+
+    </div>
+</div>

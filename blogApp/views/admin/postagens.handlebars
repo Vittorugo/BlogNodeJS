@@ -1,3 +1,35 @@
 <h2> Postagens: </h2>
 <hr>
 <a href="/admin/postagens/add"><button class="btn btn-info mt-2"> Nova postagem</button></a>
+
+
+{{#each postagem}}
+
+    <div class="card mt-4">
+        <div class="card-body">
+
+            <h4>{{titulo}}</h4>
+            
+            
+            
+            <p> Descrição: {{descricao}} </p>
+            
+            {{conteudo}} <br><br>
+            
+            <small> Data: {{data}} </small> <br>
+            <small>Categoria: {{categoria.nome}}</small> <br>
+            <a href="/admin/postagens/edit/{{_id}}"> <button class="btn btn-outline-info mt-3"> Editar postagens</button></a>
+            
+            
+
+
+        </div>
+    </div>
+
+
+
+
+{{else}}
+
+    <h4  class="mt-4" style="color: rgb(161, 158, 158)"> Nenhuma postagem feita! </h4>
+{{/each}}
