@@ -1,4 +1,4 @@
-{{#each erros}}
+{{#each falhas}}
     
     <div class="alert alert-danger alert-dismissible fade show"> <!-- classe de botão de alerta que tem a opção de fechar -->
         
@@ -15,10 +15,10 @@
 
         <h4> Editar postagem: </h4>
 
-        <form action="/admin/postagem/edit" method="POST" class="col-md-5  mb-3">
+        <form action="/admin/postagens/edit" method="POST" class="col-md-5  mb-3">
 
 
-            <input type="hidden" value="{{postagem._id}}" name="id"> <!--  input oculto que salva o conteúdo do formulário -->
+            <input type="hidden" value="{{edit._id}}" name="id"> <!--  input oculto que salva o conteúdo do formulário -->
 
             <label for="titulo_post"> Título: </label>
                 <input name="titulo_edit_post" class="form-control" type="text" value="{{edit.titulo}}">
@@ -33,7 +33,7 @@
                 <textarea class="form-control " name="edit_conteudo" >{{edit.conteudo}}</textarea>
             
             <label for="cat_post"> Categoria: </label>
-                <select name="cat_edit_post" class="form-control colorful-select dropdown-secondary" > 
+                <select name="cat_edit_post" class="form-control colorful-select dropdown-secondary" id="categoria"> 
 
                     <label class="mdb-main-label">Selecione a categoria ... </label>
                 

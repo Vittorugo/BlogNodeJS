@@ -12,16 +12,21 @@
             
             
             
+            
             <p> Descrição: {{descricao}} </p>
             
             {{conteudo}} <br><br>
             
             <small> Data: {{data}} </small> <br>
             <small>Categoria: {{categoria.nome}}</small> <br>
-            <a href="/admin/postagens/edit/{{_id}}"> <button class="btn btn-outline-info mt-3"> Editar postagens</button></a>
+            <a href="/admin/postagens/edit/{{_id}}"> <button class="btn btn-outline-info mt-4 md-5 btn-sm"> Editar </button></a>
             
-            
+            <form  action='/admin/postagens/deletar' method="POST" style="display: inline-block">
 
+                <input type="hidden" name="id" value="{{_id}}"> <!-- Um campo oculto geralmente armazena o registro do banco de dados que precisa ser atualizado quando o formulário é enviado. -->
+                <button type="submit" class="btn btn-outline-danger btn-sm md-5 mt-4"> Deletar </button>
+            
+            </form>
 
         </div>
     </div>
