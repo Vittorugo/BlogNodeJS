@@ -14,14 +14,25 @@ const Postagem = mongoose.model('postagens') // schema postagens
 // defininco a rota principal ...
 
 router.get('/', (req, res) => {
-    res.render('admin/index')
+    
+    Postagem.find().populate('categoria').sort({data: 'desc'}).then((postagens) =>{
+        res.render('index',{postagens: postagens})
+    }).catch( (err) => {
+        req.flash('error_msg', "Não foi possível apresentar as postagens!")
+        res.redirect('/404')
+    })
+    
+})
+
+router.get('/404', (req,res) => {
+    res.send("Erro 404!")
 })
 
 
 
 router.get('/categorias', (req, res) => {
     
-    Categoria.find().sort({date: 'desc'}).then((categorias) =>{  // procurando as categorias adicionadas no banco e exibindo-as em nossa página lista de categorias.
+    Categoria.find().sort({date: -1}).then((categorias) =>{  // procurando as categorias adicionadas no banco e exibindo-as em nossa página lista de categorias.
         res.render("admin/categorias", {categorias: categorias})
     }).catch((erro) => {
         req.flash("error_msg", "Houve um erro ao listar as categorias")
