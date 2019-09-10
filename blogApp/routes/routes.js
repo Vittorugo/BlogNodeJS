@@ -198,7 +198,7 @@ router.post('/postagens/nova' , (req, res) => {
 
 router.get('/postagens/edit/:id', (req,res) => {
     
-    Postagem.findById({_id: req.params.id}).then( ( postagem ) => {
+    Postagem.findOne({_id: req.params.id}).then( ( postagem ) => {
 
         Categoria.find().then( (categoria) => { 
             
@@ -219,7 +219,7 @@ router.get('/postagens/edit/:id', (req,res) => {
 
 })
 
-router.post('/postagem/edit', (req, res) => {
+router.post('/postagens/edit', (req, res) => {
 
     Postagem.findOne({_id: req.body.id}).then( ( postagem) => {
 
@@ -227,7 +227,7 @@ router.post('/postagem/edit', (req, res) => {
         postagem.slug   = req.body.slug_edit_post
         postagem.descricao = req.body.descricao_edit_post
         postagem.conteudo = req.body.edit_conteudo
-        postagem.categoria = req.body.edit_conteudo
+        postagem.categoria = req.body.cat_edit_post
 
 
         postagem.save().then( () => {
@@ -243,6 +243,19 @@ router.post('/postagem/edit', (req, res) => {
         res.redirect('/admin/postagens')
     })
 
+})
+
+
+router.post('/postagens/deletar', ( req, res) => {
+    Postagem.deleteOne({_id: req.body.id}).then( () =>{
+        req.flash('success_msg','Postagem deletada!')
+        res.redirect("/admin/postagens")
+    }).catch( ( erro ) => {
+
+        req.flash('error_msg','Não foi possível excluir a postagem!')
+        res.redirect('/admin/postagens')
+
+    })
 })
 
 
