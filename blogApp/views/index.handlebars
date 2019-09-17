@@ -1,8 +1,8 @@
 <div class="jumbotron">
   <h1 class="display-4">Bem vindo ao blog do Nodejs!</h1>
-  <p class="lead">Aqui você encontrará todas as informações necessárias para ficar por dentro de todo ecossistema envolvendo Nodejs.</p>
+  <p class="lead">Este é um blog simples feito com Nodejs + Espress + MongoDB. </p>
   <hr class="my-4">
-  <p><small> Cadastre-se e fique por dentro de tudo que rola no mundo do Nodejs! </small></p>
+  <p><small> Cadastre-se e fique adquira conhecimento sobre essas tecnologias! </small></p>
   <a class="btn btn-success btn-sm " href="#" role="button"> Crie uma conta </a>
 </div>
 
@@ -10,10 +10,16 @@
 
 {{#each postagens}}
 
-    <div class="card">
+    <div class="card mt-4">
         <div class="card-body">
+            
             <h3>{{titulo}}</h3>
-            {{descricao}}
+            <p>{{descricao}}</p>
+            <a href="/admin/postagem/{{slug}}"><button class="btn btn-outline-success btn-sm">Leia mais </button></a>
+            <hr>
+            <small>Categoria: {{categoria.nome}}</small><br>
+            <small>Data da publicação: {{data}}</small>
+
         </div>
     </div>
 
