@@ -313,4 +313,25 @@ router.post('/postagens/deletar', ( req, res) => {
 })
 
 
+router.get('/postagem/:slug', (req,res) => {
+
+    Postagem.findOne({slug: req.params.slug}).then( (postagem) => {
+
+        if( postagem ){
+
+            res.render('postagens/indexpostagens', {postagem: postagem})
+
+
+        }else{
+
+            req.flash('error_msg',"Erro ao procurar postagem!")
+            res.redirect("/admin")
+        }
+    }).catch( (err) => {
+
+        req.flash('error_msg',"Erro ao procurar postagem selecionada!")
+        res.redirect('/admin')
+    })
+})
+
 module.exports = router // exportando a rota 
