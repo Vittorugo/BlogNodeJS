@@ -1,0 +1,22 @@
+<h2> {{categoria.nome}} </h2>
+<hr>
+
+{{#each postagens}}
+
+    <div class="card mt-4">
+        <div class="card-body">
+            
+            <h3>{{titulo}}</h3>
+            <p>{{descricao}}</p>
+            <a href="/admin/postagem/{{slug}}"><button class="btn btn-outline-success btn-sm">Leia mais </button></a>
+            <hr>
+            <small>Data da publicação: {{data}}</small>
+
+        </div>
+    </div>
+
+{{else}}
+
+    <h4 class="mt-4" style="color: rgb(161, 158, 158)"> Nenhuma postagem para esta categoria :( </h4>
+
+{{/each}}
