@@ -11,6 +11,7 @@ require("../models/Postagem") // importando o modelo de postagem
 const Postagem = mongoose.model('postagens') // schema postagens
 
 
+
 // defininco a rota principal ...
 
 router.get('/', (req, res) => {
@@ -139,6 +140,48 @@ router.post("/categorias/deletar", (req,res) => {
     })
 })
 
+router.get("/listcategorias", (req, res) => {
+    Categoria.find().then( (categorias) => {
+
+        res.render('categorias/indexCategorias', {categorias: categorias})
+    
+    }).catch( (err) => {
+    
+        req.flash('error_msg', 'Erro ao exibir página de categorias!')
+        res.redirect('/admin')
+    })
+})
+
+
+router.get('/categorias/:slug', (req, res) => {
+
+    Categoria.findOne( {slug: req.params.slug}).then( ( categoria ) =>{
+
+        if(categoria){
+
+            Postagem.find({categoria: categoria._id}).then( ( postagem )=>{
+
+                res.render('categorias/indexPostagens', {postagens: postagem, categoria: categoria})
+
+            }).catch((err) => {
+
+                req.flash('error_msg',"Houve um erro ao procurar os posts")
+                res.redirect('/admin')
+            })
+
+        }else{
+
+            req.flash('error_msg', "Esta categoria não existe!")
+            res.redirect('/admin')
+        }
+
+
+    }).catch( (err) => {
+        req.flash('error_msg', "Erro ao carregar categoria!")
+        res.redirect('/admin')
+    })
+
+})
 
 //----------- rotas de postagens ------------// 
 
