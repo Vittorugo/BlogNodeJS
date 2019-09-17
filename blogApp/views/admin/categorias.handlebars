@@ -1,6 +1,6 @@
 <h2>Lista de categorias:</h2>
 <hr>
-<a href="/admin/categorias/add"><button class="btn btn-info mt-2"> Nova categoria</button></a>
+<a href="/admin/categorias/add"><button class="btn btn-success mt-2"> Nova categoria</button></a>
 
 {{#each categorias}}
 
@@ -9,7 +9,7 @@
             <h4>{{nome}}</h4>  <!-- nome da coluna do banco-->
             <small>Slug: {{slug}}</small><br> <!-- nome da coluna do banco -->
             <small>Data de criação: {{data}}</small> <br>
-            <a href="/admin/categorias/edit/{{_id}}"><button class="btn btn-outline-info btn-sm mt-4"> Editar </button></a>
+            <a href="/admin/categorias/edit/{{_id}}"><button class="btn btn-outline-success btn-sm mt-4"> Editar </button></a>
 
             
             <form  action='/admin/categorias/deletar' method="POST" style="display: inline-block">
