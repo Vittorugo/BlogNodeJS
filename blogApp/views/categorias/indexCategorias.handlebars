@@ -1,0 +1,16 @@
+<h4>Categorias:</h4>
+<hr>
+
+{{#each categorias}}
+
+    <a href="categorias/{{slug}}" style="color: rgb(161, 158, 158)" > 
+    
+        <h5>{{nome}}</h5>
+    
+    </a>
+
+{{else}}
+
+    <h4 class='mt-4' style="color:rgb(161, 158, 158)">Nenhuma categoria cadastrada :/ </h4>
+
+{{/each}}
