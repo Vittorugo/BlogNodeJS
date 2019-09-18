@@ -1,0 +1,37 @@
+{{#each erros}}
+
+    <div class="alert alert-danger alert-dismissible fade show"> <!-- classe de botão de alerta que tem a opção de fechar -->
+        
+        {{text}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>    
+    </div>
+{{else}}
+
+{{/each}}
+
+
+<h2> Crie sua conta: </h2>
+
+<div class="card">
+    <div class="card-body">
+
+        <form action="" method="POST">
+            
+            
+            <label for="nome"> Nome: </label>
+                <input type="text" class="form-control" name="nome" placeholder="Digite seu nome completo" required><br>
+
+            <label for="email"> Email: </label>
+                <input type="text" class="form-control" name="email" placeholder="Digite seu email" required><br>
+
+            <label for="senha"> Senha: </label>
+                <input type="password" class="form-control" name="senha" placeholder="Digite uma senha" required><br>
+
+            <label for="senha2"> Digite a Senha novamente: </label>
+                <input type="password" class="form-control" name="senha2" placeholder="Digite a mesma senha" required>
+
+            <button type="submit" class="btn btn-outline-success mt-4"> Criar conta </button>
+
+        </form>
+    </div>
+</div>
