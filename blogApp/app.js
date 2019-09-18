@@ -9,7 +9,7 @@ const path = require('path') // módulo para manipular pastas e diretórios ...
 const mongoose   = require('mongoose')
 const session  = require('express-session') // módulo para armazenar os dados do servidor na sessão 
 const flash  = require('connect-flash') // tipo de sessão que aparece apenas uma vez : carrega mensagens de tratamento por um tempo curto ( caso recarregue a página o alert vai sumir )
-
+const usuarios = require('./routes/usuario')
 
 // configurações ...
 
@@ -42,7 +42,7 @@ const flash  = require('connect-flash') // tipo de sessão que aparece apenas um
     // handlebars ... 
 
         app.engine('handlebars', handlebars({
-            defaultLayout: 'main'
+            defaultLayout: 'main' // define o layout padrão para todas as páginas da aplicação ... 
            
         }))
 
@@ -67,11 +67,15 @@ const flash  = require('connect-flash') // tipo de sessão que aparece apenas um
         app.use(express.static(path.join(__dirname,"public"))) // estamos falando para o express que a pasta que está guardando todos os nossos arquivos estáticos é a pasta 'public' ... usamos 'path.join' e '__dirname' para o express pegar o caminho absoluto para a pasta public.
         
       
-// rotas ...
+    // rotas ...
 
-//app.use(express.json())
-//app.use(routes) ... vamos utilizar um prefixo antes das rotas ...
-app.use('/admin',routes)
+    //app.use(express.json())
+    //app.use(routes) ... vamos utilizar um prefixo antes das rotas ...
+    app.use('/admin',routes)
+    app.use('/usuarios', usuarios)
+
+
+
 
 // conexão ...
 
